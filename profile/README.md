@@ -14,41 +14,33 @@ on a cron / daily / weekly / interval basis.
 
 ---
 
-## The ecosystem
+## Open-source repos
 
-Myra is split into focused repos so the desktop app stays open-source while the
-managed cloud layer stays private.
+| Repo | What it is |
+|------|------------|
+| **[Myra-Agents](https://github.com/Myra-Agents/Myra-Agents)** | The desktop app — a Kanban board that runs CLI agents. **Next.js 16 + Tauri v2 (Rust).** |
+| **[Myra-Agents-Shared](https://github.com/Myra-Agents/Myra-Agents-Shared)** | `@myra/shared` — TypeScript types, API contracts, pure domain helpers. |
+| **[Myra-Agents-Plugins](https://github.com/Myra-Agents/Myra-Agents-Plugins)** | Runtime plugins over a language-agnostic subprocess protocol — agent providers + event reactions. |
+| **[Myra-Agents-Dev](https://github.com/Myra-Agents/Myra-Agents-Dev)** | One-command multi-repo dev workspace bootstrap. |
 
-| Repo | What it is | |
-|------|------------|---|
-| **[Myra-Agents](https://github.com/Myra-Agents/Myra-Agents)** | The desktop app — a Kanban board that runs CLI agents. **Next.js 16 + Tauri v2 (Rust).** | 🌐 public |
-| **[Myra-Agents-Shared](https://github.com/Myra-Agents/Myra-Agents-Shared)** | `@myra/shared` — TypeScript types, API contracts, pure domain helpers. | 🌐 public |
-| **[Myra-Agents-Plugins](https://github.com/Myra-Agents/Myra-Agents-Plugins)** | Runtime plugins over a language-agnostic subprocess protocol — agent providers + event reactions. | 🌐 public |
-| **[Myra-Agents-Dev](https://github.com/Myra-Agents/Myra-Agents-Dev)** | One-command multi-repo dev workspace bootstrap. | 🌐 public |
-| **Myra-Agents-Server** | `myra-server` — the Rust agent runner + board store, shipped as a prebuilt sidecar binary the app supervises. | 🔒 private · binary published |
-| **Myra-Agents-Hub** | The Cloudflare Worker SaaS relay (Clerk auth, remote instances). | 🔒 private |
+> Managed multi-tenant cloud features are available separately (closed-source).
 
 ## How it fits together
 
 ```mermaid
 flowchart LR
   app["Desktop App<br/>(Next.js + Tauri)"]
-  server["myra-server<br/>(Rust sidecar)"]
-  hub["Hub<br/>(Cloudflare Worker, SaaS)"]
+  backend["Local backend<br/>(prebuilt binary)"]
   plugins["Plugins<br/>(subprocess protocol)"]
   shared["@myra/shared<br/>(types + contracts)"]
 
-  app -->|spawns &amp; supervises| server
-  app -->|auth &amp; remote relay| hub
-  server -->|loads| plugins
+  app -->|spawns &amp; supervises| backend
+  backend -->|loads| plugins
   app -.->|shared types| shared
-  server -.->|mirrors types| shared
-  hub -.->|shared types| shared
 ```
 
-The app never contains the server/hub source — it talks to the **public prebuilt
-server binary**. So you can build and run the whole desktop app without any
-private access.
+The desktop app ships with a **prebuilt local backend binary** — so you can build
+and run the whole app from open source, no extra access needed.
 
 ## Quick start
 
@@ -56,21 +48,20 @@ private access.
 git clone https://github.com/Myra-Agents/Myra-Agents-Dev.git
 cd Myra-Agents-Dev
 ./bootstrap.sh        # clones the repos, wires submodules, installs deps
-./dev.sh sidecar      # fetches the prebuilt Rust server binary
+./dev.sh sidecar      # fetches the prebuilt backend binary
 ./dev.sh app          # runs the desktop app
 ```
 
-Outside contributors without access to the private repos still get a fully
-working **app + shared + plugins** setup — `bootstrap.sh` skips what it can't
-reach. See **[Myra-Agents-Dev](https://github.com/Myra-Agents/Myra-Agents-Dev)**.
+See **[Myra-Agents-Dev](https://github.com/Myra-Agents/Myra-Agents-Dev)** for the
+full workspace setup.
 
 ## Extend it
 
-Plugins extend the core without its source, over a small contract (a
+Plugins extend the app without touching its core, over a small contract (a
 `manifest.json` + stdin/stdout NDJSON):
 
 - **Agent providers** — contribute agents to the card picker.
-- **Event reactions** — react to bus events (Slack, webhooks, integrations…).
+- **Event reactions** — react to board events (Slack, webhooks, integrations…).
 
 Start from **[Myra-Agents-Plugins](https://github.com/Myra-Agents/Myra-Agents-Plugins)**
 (`PROTOCOL.md` + JSON schema + examples).
