@@ -14,16 +14,18 @@ on a cron / daily / weekly / interval basis.
 
 ---
 
-## Open-source repos
+## Repos
 
-| Repo | What it is |
-|------|------------|
-| **[Myra-Agents](https://github.com/Myra-Agents/Myra-Agents)** | The desktop app — a Kanban board that runs CLI agents. **Next.js 16 + Tauri v2 (Rust).** |
-| **[Myra-Agents-Shared](https://github.com/Myra-Agents/Myra-Agents-Shared)** | `@myra/shared` — TypeScript types, API contracts, pure domain helpers. |
-| **[Myra-Agents-Plugins](https://github.com/Myra-Agents/Myra-Agents-Plugins)** | Runtime plugins over a language-agnostic subprocess protocol — agent providers + event reactions. |
-| **[Myra-Agents-Dev](https://github.com/Myra-Agents/Myra-Agents-Dev)** | One-command multi-repo dev workspace bootstrap. |
+| Repo | What it is | |
+|------|------------|---|
+| **[Myra-Agents](https://github.com/Myra-Agents/Myra-Agents)** | The desktop app — a Kanban board that runs CLI agents. **Next.js 16 + Tauri v2 (Rust).** | 🌐 |
+| **[Myra-Agents-Shared](https://github.com/Myra-Agents/Myra-Agents-Shared)** | `@myra/shared` — TypeScript types, API contracts, pure domain helpers. | 🌐 |
+| **[Myra-Agents-Plugins](https://github.com/Myra-Agents/Myra-Agents-Plugins)** | Runtime plugins over a language-agnostic subprocess protocol — agent providers + event reactions. | 🌐 |
+| **[Myra-Agents-Dev](https://github.com/Myra-Agents/Myra-Agents-Dev)** | One-command multi-repo dev workspace bootstrap. | 🌐 |
+| **Myra-Agents-Server** | The app's prebuilt backend binary. | 🔒 |
+| **Myra-Agents-Hub** | Managed cloud service. | 🔒 |
 
-> Managed multi-tenant cloud features are available separately (closed-source).
+<sub>🌐 public · 🔒 private</sub>
 
 ## How it fits together
 
