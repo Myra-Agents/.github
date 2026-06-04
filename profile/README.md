@@ -50,12 +50,18 @@ and run the whole app from open source, no extra access needed.
 
 ## Quick start
 
+One command — clones every repo, wires it up, installs deps:
+
 ```bash
-git clone https://github.com/Myra-Agents/Myra-Agents-Dev.git
-cd Myra-Agents-Dev
-./bootstrap.sh        # clones the repos, wires submodules, installs deps
-./dev.sh sidecar      # fetches the prebuilt backend binary
-./dev.sh app          # runs the desktop app
+curl -fsSL https://raw.githubusercontent.com/Myra-Agents/Myra-Agents-Dev/develop/install.sh | bash
+```
+
+Then run the app:
+
+```bash
+cd ~/Myra-Agents-Dev
+./dev.sh sidecar      # fetch the prebuilt backend binary
+./dev.sh app          # run the desktop app
 ```
 
 See **[Myra-Agents-Dev](https://github.com/Myra-Agents/Myra-Agents-Dev)** for the
