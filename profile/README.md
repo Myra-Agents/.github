@@ -36,10 +36,12 @@ flowchart LR
   plugins["Plugins<br/>(subprocess protocol)"]
   shared["@myra/shared<br/>(types + contracts)"]
   hub["Hub<br/>(managed cloud)"]
+  remote["Remote agents<br/>(self-hosted backends)"]
 
   app -->|spawns &amp; supervises| backend
   backend -->|loads| plugins
   app -.->|optional| hub
+  hub -.->|brokers| remote
   app -.->|shared types| shared
 ```
 
