@@ -35,9 +35,11 @@ flowchart LR
   backend["Local backend<br/>(prebuilt binary)"]
   plugins["Plugins<br/>(subprocess protocol)"]
   shared["@myra/shared<br/>(types + contracts)"]
+  hub["Hub<br/>(managed cloud)"]
 
   app -->|spawns &amp; supervises| backend
   backend -->|loads| plugins
+  app -.->|optional| hub
   app -.->|shared types| shared
 ```
 
