@@ -4,6 +4,8 @@
 
 **A desktop Kanban board that runs CLI coding agents.**
 
+🌐 **[myra-agents.github.io](https://myra-agents.github.io)**
+
 Drop a prompt on a card, launch it, and Myra spawns a configured coding-agent
 binary (opencode · copilot · claude · custom) in headless mode and streams its
 output back onto the board. Cards flow **Draft → Todo → In Progress → Waiting
