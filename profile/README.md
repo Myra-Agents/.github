@@ -12,8 +12,7 @@ output back onto the board. Cards flow **Draft → Todo → In Progress → Wait
 Feedback → Awaiting Review → Done**. Schedules auto-materialize and launch cards
 on a cron / daily / weekly / interval basis.
 
-*Myra* is Swedish for **ant** — a single agent is one ant, the org is the colony:
-many small workers running in parallel, coordinating toward a shared goal.
+*Myra* is Swedish for **ant** — build your colony of Agents to achieve your goals.
 
 </div>
 
