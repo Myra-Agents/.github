@@ -1,18 +1,18 @@
 <div align="center">
+  
+# ![Myra Agents logo](https://github.com/Myra-Agents/.github/blob/main/banner.png?raw=true)
 
-# Myra Agents
-
-**A desktop Kanban board that runs CLI coding agents.**
+**Manage & Run your AI Agents from anywhere.**
 
 🌐 **[myra-agents.github.io](https://myra-agents.github.io)**
 
-Drop a prompt on a card, launch it, and Myra spawns a configured coding-agent
-binary (opencode · copilot · claude · custom) in headless mode and streams its
+Drop a prompt on a card, launch it, and Myra spawns a configured AI agent
+(opencode · copilot · claude · custom) in headless mode and streams its
 output back onto the board. Cards flow **Draft → Todo → In Progress → Waiting
 Feedback → Awaiting Review → Done**. Schedules auto-materialize and launch cards
 on a cron / daily / weekly / interval basis.
 
-*Myra* is Swedish for **ant** — build your colony of Agents to achieve your goals.
+*Myra* is Swedish for **ant** — build your colony of Agents and achieve your goals.
 
 </div>
 
