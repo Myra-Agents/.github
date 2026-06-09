@@ -23,11 +23,11 @@ on a cron / daily / weekly / interval basis.
 | Repo | What it is | |
 |------|------------|---|
 | **[Myra-Agents](https://github.com/Myra-Agents/Myra-Agents)** | The desktop app — a Kanban board that runs CLI agents. **Next.js 16 + Tauri v2 (Rust).** | 🌐 |
-| **[Myra-Agents-Shared](https://github.com/Myra-Agents/Myra-Agents-Shared)** | `@myra/shared` — TypeScript types, API contracts, pure domain helpers. | 🌐 |
-| **[Myra-Agents-Plugins](https://github.com/Myra-Agents/Myra-Agents-Plugins)** | Runtime plugins over a language-agnostic subprocess protocol — agent providers + event reactions. | 🌐 |
-| **[Myra-Agents-Dev](https://github.com/Myra-Agents/Myra-Agents-Dev)** | One-command multi-repo dev workspace bootstrap. | 🌐 |
-| **Myra-Agents-Server** | The app's prebuilt backend binary. | 🔒 |
-| **Myra-Agents-Hub** | Managed cloud service. | 🔒 |
+| **[Pheromones](https://github.com/Myra-Agents/Pheromones)** | `@myra/shared` — TypeScript types, API contracts, pure domain helpers. | 🌐 |
+| **[Plugins](https://github.com/Myra-Agents/Plugins)** | Runtime plugins over a language-agnostic subprocess protocol — agent providers + event reactions. | 🌐 |
+| **[Myrastack](https://github.com/Myra-Agents/Myrastack)** | One-command multi-repo dev workspace bootstrap. | 🌐 |
+| **Worker** | The app's prebuilt backend binary. | 🔒 |
+| **Nest** | Managed cloud service. | 🔒 |
 
 <sub>🌐 public · 🔒 private</sub>
 
@@ -35,21 +35,21 @@ on a cron / daily / weekly / interval basis.
 
 ```mermaid
 flowchart LR
-  app["Desktop App<br/>(Next.js + Tauri)"]
-  backend["Local backend<br/>(prebuilt binary)"]
-  plugins["Plugins<br/>(subprocess protocol)"]
-  shared["@myra/shared<br/>(types + contracts)"]
-  hub["Hub<br/>(managed cloud)"]
-  remote["Remote agents<br/>(self-hosted backends)"]
+  app["Myra-Agents\n(Next.js + Tauri)"]
+  worker["Worker\n(prebuilt binary)"]
+  plugins["Plugins\n(subprocess protocol)"]
+  shared["Pheromones\n(types + contracts)"]
+  nest["Nest\n(managed cloud)"]
+  remote["Remote agents\n(self-hosted)"]
 
-  app -->|spawns &amp; supervises| backend
-  backend -->|loads| plugins
-  app -.->|optional| hub
-  hub -.->|brokers| remote
+  app -->|spawns & supervises| worker
+  worker -->|loads| plugins
+  app -.->|optional| nest
+  nest -.->|brokers| remote
   app -.->|shared types| shared
 ```
 
-The desktop app ships with a **prebuilt local backend binary** — so you can build
+The desktop app ships with a **prebuilt Worker binary** — so you can build
 and run the whole app from open source, no extra access needed.
 
 ## Quick start
@@ -57,18 +57,18 @@ and run the whole app from open source, no extra access needed.
 One command — clones every repo, wires it up, installs deps:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Myra-Agents/Myra-Agents-Dev/develop/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Myra-Agents/Myrastack/develop/install.sh | bash
 ```
 
 Then run the app:
 
 ```bash
-cd ~/Myra-Agents-Dev
-./dev.sh sidecar      # fetch the prebuilt backend binary
+cd ~/Myrastack
+./dev.sh sidecar      # fetch the prebuilt Worker binary
 ./dev.sh app          # run the desktop app
 ```
 
-See **[Myra-Agents-Dev](https://github.com/Myra-Agents/Myra-Agents-Dev)** for the
+See **[Myrastack](https://github.com/Myra-Agents/Myrastack)** for the
 full workspace setup.
 
 ## Extend it
@@ -79,7 +79,7 @@ Plugins extend the app without touching its core, over a small contract (a
 - **Agent providers** — contribute agents to the card picker.
 - **Event reactions** — react to board events (Slack, webhooks, integrations…).
 
-Start from **[Myra-Agents-Plugins](https://github.com/Myra-Agents/Myra-Agents-Plugins)**
+Start from **[Plugins](https://github.com/Myra-Agents/Plugins)**
 (`PROTOCOL.md` + JSON schema + examples).
 
 ## Contributing
